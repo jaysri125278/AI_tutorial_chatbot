@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Python Tutorial Chatbot</h1>
+        <div class="chat-box">
+            <div id="chat"></div>
+        </div>
+        <form id="chat-form">
+            <input type="text" id="user-input" placeholder="Ask a question...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#chat-form').on('submit', function (e) {
+                e.preventDefault();
+                var userMessage = $('#user-input').val();
+                $('#chat').append('<div class="user-message">You: ' + userMessage + '</div>');
+                $('#user-input').val('');
+
+                $.post('/chat', { message: userMessage }, function (data) {
+                    $('#chat').append('<div class="bot-response">Bot: ' + data.response + '</div>');
+                    $('#chat').scrollTop($('#chat')[0].scrollHeight);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
