@@ -1,0 +1,40 @@
+{
+  "tutorial": [
+    {
+      "section": "Introduction to Python",
+      "content": "Python is a high-level, interpreted programming language that is widely used for web development, data analysis, artificial intelligence, scientific computing, and more. Its syntax is simple and easy to understand, making it an excellent choice for beginners."
+    },
+    {
+      "section": "1. Python Variables and Data Types",
+      "content": "In Python, you can store data in variables. A variable is a name that refers to a value.\n\nExample:\n\nx = 10\nname = 'Alice'\nis_active = True\n\nPython has several built-in data types:\n- Integers: Whole numbers, e.g., x = 10\n- Floats: Decimal numbers, e.g., y = 3.14\n- Strings: Sequence of characters, e.g., name = 'Python'\n- Booleans: True or False values, e.g., is_active = True"
+    },
+    {
+      "section": "2. Basic Operations",
+      "content": "Python supports various mathematical operations, such as addition, subtraction, multiplication, division, and more.\n\nExample:\n\n# Arithmetic Operations\na = 5\nb = 3\n\n# Addition\nsum = a + b  # 8\n\n# Subtraction\ndifference = a - b  # 2\n\n# Multiplication\nproduct = a * b  # 15\n\n# Division\nquotient = a / b  # 1.6667"
+    },
+    {
+      "section": "3. Control Flow: Conditionals",
+      "content": "Control flow statements help you make decisions in your program. The most common control flow statements are if, elif, and else.\n\nExample:\n\nage = 20\nif age >= 18:\n    print('You are an adult.')\nelse:\n    print('You are a minor.')"
+    },
+    {
+      "section": "4. Loops",
+      "content": "Loops allow you to execute a block of code multiple times. There are two primary types of loops in Python: for and while.\n\nExample (For Loop):\n\ncolors = ['red', 'green', 'blue']\nfor color in colors:\n    print(color)\n\nExample (While Loop):\n\ni = 1\nwhile i <= 5:\n    print(i)\n    i += 1"
+    },
+    {
+      "section": "5. Functions",
+      "content": "Functions in Python are blocks of reusable code that perform a specific task.\n\nExample:\n\n# Defining a function\ndef greet(name):\n    print(f'Hello, {name}!')\n\n# Calling the function\ngreet('Alice')"
+    },
+    {
+      "section": "6. Lists and Dictionaries",
+      "content": "Python provides two commonly used data structures: lists and dictionaries.\n\nLists: A list is an ordered collection of items.\n\nExample:\n\nfruits = ['apple', 'banana', 'cherry']\nprint(fruits[0])  # apple\n\nDictionaries: A dictionary is an unordered collection of key-value pairs.\n\nExample:\n\nperson = {'name': 'John', 'age': 25, 'city': 'New York'}\nprint(person['name'])  # John"
+    },
+    {
+        "section": "7. Exception Handling",
+        "content": "Python uses try, except, and finally blocks to handle exceptions.\n\nExample:\n\ntry:\n    result = 10 / 0\nexcept ZeroDivisionError:\n    print('You can\\'t divide by zero!')\nfinally:\n    print('This will always execute.')"
+    },      
+    {
+      "section": "8. File Handling",
+      "content": "Python allows you to read from and write to files.\n\nReading a file:\n\nwith open('example.txt', 'r') as file:\n    content = file.read()\n    print(content)\n\nWriting to a file:\n\nwith open('example.txt', 'w') as file:\n    file.write('Hello, Python!')"
+    }
+  ]
+}
