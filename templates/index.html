@@ -3,36 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Tutorial Chatbot</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>PyBot - Your Python Tutorial Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Python Tutorial Chatbot</h1>
+    <div class="chat-container">
         <div class="chat-box">
-            <div id="chat"></div>
+            <div class="chat-header">
+                <h2>PyBot - Python Tutorial Assistant</h2>
+                <p class="subtitle">Ask me anything about Python!</p>
+            </div>
+            <div class="chat-content" id="chat-content">
+                <div class="chat-message bot-message">
+                    <p>👋 Hello! I'm PyBot, your Python Tutorial Assistant. How can I help you today?</p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Type your question..." autocomplete="off"/>
+                <button id="send-btn">Send</button>
+            </div>
         </div>
-        <form id="chat-form">
-            <input type="text" id="user-input" placeholder="Ask a question...">
-            <button type="submit">Send</button>
-        </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#chat-form').on('submit', function (e) {
-                e.preventDefault();
-                var userMessage = $('#user-input').val();
-                $('#chat').append('<div class="user-message">You: ' + userMessage + '</div>');
-                $('#user-input').val('');
+        $(document).ready(function() {
+            $("#send-btn").click(function() {
+                const userInput = $("#user-input").val();
+                if (userInput.trim() !== "") {
+                    addUserMessage(userInput);
+                    getBotResponse(userInput);
+                }
+            });
 
-                $.post('/chat', { message: userMessage }, function (data) {
-                    $('#chat').append('<div class="bot-response">Bot: ' + data.response + '</div>');
-                    $('#chat').scrollTop($('#chat')[0].scrollHeight);
-                });
+            $("#user-input").keydown(function(event) {
+                if (event.key === "Enter") {
+                    $("#send-btn").click();
+                }
             });
         });
+
+        function addUserMessage(message) {
+            const chatContent = $("#chat-content");
+            const userMessageDiv = $("<div class='chat-message user-message'><p></p></div>");
+            userMessageDiv.find("p").text(message);
+            chatContent.append(userMessageDiv);
+            $("#user-input").val("");
+            chatContent.scrollTop(chatContent[0].scrollHeight);
+        }
+
+        function getBotResponse(userInput) {
+            $.ajax({
+                url: "/chat",
+                method: "POST",
+                data: {
+                    message: userInput
+                },
+                success: function(data) {
+                    const botMessageDiv = $("<div class='chat-message bot-message'><p></p></div>");
+                    botMessageDiv.find("p").text(data.response);
+                    $("#chat-content").append(botMessageDiv);
+                    $("#chat-content").scrollTop($("#chat-content")[0].scrollHeight);
+                }
+            });
+        }
     </script>
 </body>
 </html>
